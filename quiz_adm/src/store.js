@@ -16,7 +16,7 @@ const store = () => {
 
   enchancers.push(applyMiddleware(...middleware))
 
-  return createStore(, compose(...enchancers))
+  return createStore(reducers, compose(...enchancers))
 }
 
 export default store;
