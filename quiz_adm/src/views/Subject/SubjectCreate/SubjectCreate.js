@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col, Card, CardHeader, CardBody, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Row, Col, Card, CardHeader, CardBody, CardFooter, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { connect } from 'react-redux';
+
 
 class SubjectCreate extends Component {
 
@@ -29,6 +30,9 @@ class SubjectCreate extends Component {
                   </FormGroup>
                 </Form>
               </CardBody>
+              <CardFooter>
+                <Button type='button' color='primary'>Create</Button>
+              </CardFooter>
             </Card>
           </Col>
         </Row>
