@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Card, CardHeader, CardBody, Table } from 'reactstrap';
+import { Row, Col, Card, CardHeader, CardBody, Table, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -25,15 +25,16 @@ class SubjectList extends Component {
                     <tr>
                       <th>Name</th>
                       <th>Date</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>Puzzle</td>
                       <td>01/01/2000</td>
+                      <td><Button color='warning'>Delete</Button></td>
                     </tr>
                   </tbody>
-
                 </Table>
               </CardBody>
             </Card>
