@@ -18,7 +18,7 @@ class SubjectList extends Component {
                 Listing
                 </CardHeader>
               <CardBody>
-                <a href='/subject/new' className='btn btn-primary mb-4'>Create new subject</a>
+                <a href='#/subject/new' className='btn btn-primary mb-4'>Create new subject</a>
                 <Table responsive>
                   <thead>
                     <tr>
