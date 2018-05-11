@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, CardHeader, CardBody, Table } from 'reactstrap';
+import { connect } from 'react-redux';
 
 class SubjectList extends Component {
 
@@ -43,4 +44,16 @@ class SubjectList extends Component {
   }
 }
 
-export default SubjectList;
+const mapStateToPropos = (state) => {
+  return {
+
+  }
+}
+
+const mapDispathToProps = (dispath) => {
+  return {
+
+  }
+}
+
+export default connect(mapStateToPropos, mapDispathToProps)(SubjectList);
