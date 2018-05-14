@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import mongoose from 'mongoose';
 import cors from 'cors';
 import routes from './src/index';
 
@@ -14,5 +15,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 routes(app);
+
+mongoose.connect('mongodb://localhost:27017/quiz_app');
 
 app.listen(PORT, HOST, () => console.log(`Express has been started at ${HOST}:${PORT}.`));
