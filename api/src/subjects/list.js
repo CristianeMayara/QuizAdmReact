@@ -1,3 +1,6 @@
-export default (req, res) => {
-  return res.json({ subject: 'Notthing here' })
-}
+import Subject from "./../models/Subject";
+
+export default async (req, res) => {
+  let subjects = await Subject.find();
+  return res.json({ subjects });
+};
