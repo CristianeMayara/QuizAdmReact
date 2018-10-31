@@ -7,7 +7,8 @@ export const INITIAL_STATE = Immutable({
     error: false,
     loading: false,
     subject: { name: "", description: "" }
-  }
+  },
+  subjectList: []
 });
 
 export const createSubject = (state = INITIAL_STATE, action) => {
@@ -15,7 +16,7 @@ export const createSubject = (state = INITIAL_STATE, action) => {
     ...state,
     newSubject: {
       error: false,
-      laoding: true,
+      loading: true,
       subject: { name: "", description: "" }
     }
   };
@@ -26,7 +27,7 @@ export const createSuccess = (state = INITIAL_STATE, action) => {
     ...state,
     newSubject: {
       error: false,
-      laoding: false,
+      loading: false,
       subject: action.subject
     }
   };
@@ -37,8 +38,41 @@ export const createError = (state = INITIAL_STATE, action) => {
     ...state,
     newSubject: {
       error: true,
-      laoding: false,
+      loading: false,
       subject: { name: "", description: "" }
+    }
+  };
+};
+
+export const fetchSubjects = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    subjectList: {
+      error: false,
+      loading: true,
+      subjects: []
+    }
+  };
+};
+
+export const fetchSubjectsSuccess = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    subjectList: {
+      error: false,
+      loading: false,
+      subjects: action.subjects
+    }
+  };
+};
+
+export const fetchSubjectsError = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    subjectList: {
+      error: true,
+      loading: false,
+      subjects: []
     }
   };
 };
@@ -46,6 +80,9 @@ export const createError = (state = INITIAL_STATE, action) => {
 export const HANDLER = {
   [SubjectTypes.CREATE_SUBJECT]: createSubject,
   [SubjectTypes.CREATE_SUCCESS]: createSuccess,
-  [SubjectTypes.CREATE_ERROR]: createError
+  [SubjectTypes.CREATE_ERROR]: createError,
+  [SubjectTypes.FETCH_SUBJECTS]: fetchSubjects,
+  [SubjectTypes.FETCH_SUBJECTS_SUCCESS]: fetchSubjectsSuccess,
+  [SubjectTypes.FETCH_SUBJECTS_ERROR]: fetchSubjectsError
 };
 export default createReducer(INITIAL_STATE, HANDLER);

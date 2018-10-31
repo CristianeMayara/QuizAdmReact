@@ -10,3 +10,9 @@ export const createSubject = async subject => {
     description: subject.description || ""
   });
 };
+
+export const fetchSubjects = async () => {
+  const url = `${URL}/subjects`;
+
+  return await axios.get(url);
+};
