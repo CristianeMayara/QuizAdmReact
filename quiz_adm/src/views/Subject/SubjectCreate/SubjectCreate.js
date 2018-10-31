@@ -13,7 +13,7 @@ import {
   CardHeader
 } from "reactstrap";
 import { connect } from "react-redux";
-import { thunkCreateSubject } from "../../../actions/Subject";
+import { thunkCreateSubject } from "../../../actions/Subject/SubjectThunk";
 
 class SubjectCreate extends Component {
   constructor(props) {
@@ -93,8 +93,7 @@ class SubjectCreate extends Component {
 
 const mapStateToProps = state => {
   return {
-    subject: state.subjectStore.subject,
-    error: state.subjectStore.error
+    subject: state.subjectStore.newSubject
   };
 };
 
