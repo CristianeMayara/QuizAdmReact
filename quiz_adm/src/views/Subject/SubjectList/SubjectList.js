@@ -1,25 +1,32 @@
-import React, { Component } from 'react';
-import { Row, Col, Card, CardHeader, CardBody, Table, Button } from 'reactstrap';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import {
+  Row,
+  Col,
+  Card,
+  Table,
+  Button,
+  CardBody,
+  CardHeader
+} from "reactstrap";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class SubjectList extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
     return (
-      <div className='animated fadeIn'>
+      <div className="animated fadeIn">
         <Row>
-          <Col xs='12' md='12'>
+          <Col xs="12" md="12">
             <Card>
-              <CardHeader>
-                Listing
-                </CardHeader>
+              <CardHeader>Listing</CardHeader>
               <CardBody>
-                <Link to='/subject/new' className='btn btn-primary mb-4'>Create new subject</Link>
+                <Link to="/subject/new" className="btn btn-primary mb-4">
+                  Create new subject
+                </Link>
                 <Table responsive>
                   <thead>
                     <tr>
@@ -32,7 +39,9 @@ class SubjectList extends Component {
                     <tr>
                       <td>Puzzle</td>
                       <td>01/01/2000</td>
-                      <td><Button color='warning'>Delete</Button></td>
+                      <td>
+                        <Button color="warning">Delete</Button>
+                      </td>
                     </tr>
                   </tbody>
                 </Table>
@@ -41,21 +50,19 @@ class SubjectList extends Component {
           </Col>
         </Row>
       </div>
-
-    )
+    );
   }
 }
 
-const mapStateToPropos = (state) => {
-  return {
+const mapStateToPropos = state => {
+  return {};
+};
 
-  }
-}
+const mapDispathToProps = dispath => {
+  return {};
+};
 
-const mapDispathToProps = (dispath) => {
-  return {
-
-  }
-}
-
-export default connect(mapStateToPropos, mapDispathToProps)(SubjectList);
+export default connect(
+  mapStateToPropos,
+  mapDispathToProps
+)(SubjectList);
