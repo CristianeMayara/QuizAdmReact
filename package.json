@@ -29,5 +29,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mrholek/CoreUI-React/issues"
+  },
+  "dependencies": {
+    "mongoose-type-email": "^1.0.9"
   }
 }
