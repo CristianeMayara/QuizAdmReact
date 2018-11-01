@@ -39,7 +39,7 @@ export function thunkDeleteSubject(subject) {
       let res = await deleteSubject(subject);
       console.log(res);
       dispatch(SubjectAction.deleteSubjectSuccess());
-
+      dispatch(thunkFetchSubjectList(subject));
     } catch (error) {
       dispatch(SubjectAction.deleteSubject(false));
       dispatch(SubjectAction.deleteSubjectError(true));

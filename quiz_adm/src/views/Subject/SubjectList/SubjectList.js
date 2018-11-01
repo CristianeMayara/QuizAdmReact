@@ -10,15 +10,24 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { thunkFetchSubjectList } from "./../../../actions/Subject/SubjectThunk";
+import {
+  thunkFetchSubjectList,
+  thunkDeleteSubject
+} from "./../../../actions/Subject/SubjectThunk";
 
 class SubjectList extends Component {
   constructor(props) {
     super(props);
+
+    this.handleDeleteSubject = this.handleDeleteSubject.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchSubjectList();
+  }
+
+  handleDeleteSubject(subject) {
+    return this.props.deleteSubject(subject);
   }
 
   render() {
@@ -47,7 +56,12 @@ class SubjectList extends Component {
                           <td>{subject.name}</td>
                           <td>{subject.description}</td>
                           <td>
-                            <Button color="warning">Delete</Button>
+                            <Button
+                              color="warning"
+                              onClick={() => this.handleDeleteSubject(subject)}
+                            >
+                              Delete
+                            </Button>
                           </td>
                         </tr>
                       ))}
@@ -64,13 +78,15 @@ class SubjectList extends Component {
 
 const mapStateToPropos = state => {
   return {
-    subjectList: state.subjectStore.subjectList
+    subjectList: state.subjectStore.subjectList,
+    deleteSubject: state.subjectStore.deleteSubject
   };
 };
 
 const mapDispathToProps = dispatch => {
   return {
-    fetchSubjectList: () => dispatch(thunkFetchSubjectList())
+    fetchSubjectList: () => dispatch(thunkFetchSubjectList()),
+    deleteSubject: subject => dispatch(thunkDeleteSubject(subject))
   };
 };
 
