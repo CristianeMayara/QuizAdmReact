@@ -1,5 +1,5 @@
 import { default as SubjectAction } from "./SubjectAction";
-import { createSubject, fetchSubjects } from "./SubjectAPI";
+import { createSubject, fetchSubjects, deleteSubject } from "./SubjectAPI";
 
 export function thunkCreateSubject(subject) {
   return async dispatch => {
@@ -27,6 +27,22 @@ export function thunkFetchSubjectList(subjects) {
     } catch (error) {
       dispatch(SubjectAction.fetchSubjects(false));
       dispatch(SubjectAction.fetchSubjectsError(true));
+    }
+  };
+}
+
+export function thunkDeleteSubject(subject) {
+  return async dispatch => {
+    dispatch(SubjectAction.deleteSubject(true));
+
+    try {
+      let res = await deleteSubject(subject);
+      console.log(res);
+      dispatch(SubjectAction.deleteSubjectSuccess());
+
+    } catch (error) {
+      dispatch(SubjectAction.deleteSubject(false));
+      dispatch(SubjectAction.deleteSubjectError(true));
     }
   };
 }

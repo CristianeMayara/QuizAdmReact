@@ -6,7 +6,10 @@ const { Types, Creators } = createActions({
   createSuccess: ["subject"],
   fetchSubjects: null,
   fetchSubjectsError: ["error"],
-  fetchSubjectsSuccess: ["subjects"]
+  fetchSubjectsSuccess: ["subjects"],
+  deleteSubject: null,
+  deleteSubjectError: ["error"],
+  deleteSubjectSuccess: null
 });
 
 export const SubjectTypes = Types;

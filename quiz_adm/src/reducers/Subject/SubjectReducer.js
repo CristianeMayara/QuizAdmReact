@@ -8,7 +8,16 @@ export const INITIAL_STATE = Immutable({
     loading: false,
     subject: { name: "", description: "" }
   },
-  subjectList: []
+  subjectList: {
+    error: false,
+    loading: false,
+    subjects: []
+  },
+  deleteSubject: {
+    error: false,
+    loading: false,
+    subject: {}
+  }
 });
 
 export const createSubject = (state = INITIAL_STATE, action) => {
@@ -77,12 +86,48 @@ export const fetchSubjectsError = (state = INITIAL_STATE, action) => {
   };
 };
 
+export const deleteSubject = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    deleteSubject: {
+      error: false,
+      loading: true,
+      subject: {}
+    }
+  };
+};
+
+export const deleteSubjectSuccess = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    deleteSubject: {
+      error: false,
+      loading: false,
+      subject: action.subject
+    }
+  };
+};
+
+export const deleteSubjectError = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    deleteSubject: {
+      error: true,
+      loading: false,
+      subject: {}
+    }
+  };
+};
+
 export const HANDLER = {
   [SubjectTypes.CREATE_SUBJECT]: createSubject,
   [SubjectTypes.CREATE_SUCCESS]: createSuccess,
   [SubjectTypes.CREATE_ERROR]: createError,
   [SubjectTypes.FETCH_SUBJECTS]: fetchSubjects,
   [SubjectTypes.FETCH_SUBJECTS_SUCCESS]: fetchSubjectsSuccess,
-  [SubjectTypes.FETCH_SUBJECTS_ERROR]: fetchSubjectsError
+  [SubjectTypes.FETCH_SUBJECTS_ERROR]: fetchSubjectsError,
+  [SubjectTypes.DELETE_SUBJECT]: deleteSubject,
+  [SubjectTypes.DELETE_SUBJECT_SUCCESS]: deleteSubjectSuccess,
+  [SubjectTypes.DELETE_SUBJECT_ERROR]: deleteSubjectError
 };
 export default createReducer(INITIAL_STATE, HANDLER);
