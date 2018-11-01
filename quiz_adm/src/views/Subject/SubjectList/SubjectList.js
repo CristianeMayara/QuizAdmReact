@@ -22,7 +22,6 @@ class SubjectList extends Component {
   }
 
   render() {
-    console.log(this.props.subjectList);
     return (
       <div className="animated fadeIn">
         <Row>
@@ -37,18 +36,21 @@ class SubjectList extends Component {
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>Date</th>
-                      <th>Action</th>
+                      <th>Description</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Puzzle</td>
-                      <td>01/01/2000</td>
-                      <td>
-                        <Button color="warning">Delete</Button>
-                      </td>
-                    </tr>
+                    {this.props.subjectList.subjects &&
+                      this.props.subjectList.subjects.map((subject, index) => (
+                        <tr>
+                          <td>{subject.name}</td>
+                          <td>{subject.description}</td>
+                          <td>
+                            <Button color="warning">Delete</Button>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </Table>
               </CardBody>

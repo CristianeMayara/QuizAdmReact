@@ -23,7 +23,7 @@ export function thunkFetchSubjectList(subjects) {
     try {
       let res = await fetchSubjects(subjects);
       console.log(res);
-      dispatch(SubjectAction.fetchSubjectsSuccess(res.data));
+      dispatch(SubjectAction.fetchSubjectsSuccess(res.data.subjects));
     } catch (error) {
       dispatch(SubjectAction.fetchSubjects(false));
       dispatch(SubjectAction.fetchSubjectsError(true));
