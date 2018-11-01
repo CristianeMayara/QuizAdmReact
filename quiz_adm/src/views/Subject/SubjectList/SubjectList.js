@@ -43,7 +43,7 @@ class SubjectList extends Component {
                   <tbody>
                     {this.props.subjectList.subjects &&
                       this.props.subjectList.subjects.map((subject, index) => (
-                        <tr>
+                        <tr key={subject._id}>
                           <td>{subject.name}</td>
                           <td>{subject.description}</td>
                           <td>
