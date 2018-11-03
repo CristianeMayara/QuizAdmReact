@@ -13,8 +13,8 @@ User.methods.hashPassword = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-/*User.methods.validate = function(password, cb) {
+User.methods.validate = function(password, cb) {
   return bcrypt.compare(password, this.password, cb);
-};*/
+};
 
 export default mongoose.model("User", User);
