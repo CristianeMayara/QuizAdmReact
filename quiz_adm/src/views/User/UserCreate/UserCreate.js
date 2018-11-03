@@ -13,16 +13,17 @@ import {
   CardHeader
 } from "reactstrap";
 import { connect } from "react-redux";
-import { thunkCreateSubject } from "../../../actions/Subject/SubjectThunk";
+import { thunkCreateUser } from "../../../actions/User/UserThunk";
 
-class SubjectCreate extends Component {
+class UserCreate extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      subject: {
+      user: {
         name: "",
-        description: ""
+        email: "",
+        password: ""
       }
     };
 
@@ -30,48 +31,56 @@ class SubjectCreate extends Component {
     this.handleChangeInput = this.handleChangeInput.bind(this);
   }
 
-  handleCreate(subject) {
-    this.props.createSubject(subject);
-    this.state.subject = { name: "", description: "" };
-    this.props.history.push("subject/list");
+  handleCreate(user) {
+    this.props.createUser(user);
+    this.props.history.push("user/list");
   }
 
   handleChangeInput(event) {
     const { target } = event;
-    const { value, name } = target;
+    const { value, name, email, password } = target;
 
-    let { subject } = this.state;
-    subject[name] = value;
+    let { user } = this.state;
+    user[name] = value;
 
-    return this.setState({ subject });
+    return this.setState({ user });
   }
 
   render() {
-    console.log(this.state);
+    console.log(this.state.user);
     return (
       <div className="animated fadeIn">
         <Row>
           <Col xs="12" md="12">
             <Card>
-              <CardHeader>Create New Subject</CardHeader>
+              <CardHeader>Create New User</CardHeader>
               <CardBody>
                 <Form>
                   <FormGroup>
-                    <Label htmlFor="name">Subject Name:</Label>
+                    <Label htmlFor="name">Name:</Label>
                     <Input
                       name="name"
                       type="text"
-                      placeholder="Enter subject name"
+                      placeholder="Enter user name"
                       onChange={this.handleChangeInput}
                     />
                   </FormGroup>
                   <FormGroup>
-                    <Label htmlFor="description">Subject Description:</Label>
+                    <Label htmlFor="email">Email:</Label>
                     <Input
-                      name="description"
-                      type="textarea"
+                      name="email"
+                      type="text"
                       onChange={this.handleChangeInput}
-                      placeholder="Enter subject description"
+                      placeholder="Enter user email"
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label htmlFor="password">Password:</Label>
+                    <Input
+                      name="password"
+                      type="text"
+                      onChange={this.handleChangeInput}
+                      placeholder="Enter user password"
                     />
                   </FormGroup>
                 </Form>
@@ -80,7 +89,7 @@ class SubjectCreate extends Component {
                 <Button
                   type="button"
                   color="primary"
-                  onClick={() => this.handleCreate(this.state.subject)}
+                  onClick={() => this.handleCreate(this.state.user)}
                 >
                   Create
                 </Button>
@@ -95,17 +104,17 @@ class SubjectCreate extends Component {
 
 const mapStateToProps = state => {
   return {
-    subject: state.subjectStore.newSubject
+    user: state.userStore.newUser
   };
 };
 
 const mapDispathToProps = dispatch => {
   return {
-    createSubject: subject => dispatch(thunkCreateSubject(subject))
+    createUser: user => dispatch(thunkCreateUser(user))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispathToProps
-)(SubjectCreate);
+)(UserCreate);

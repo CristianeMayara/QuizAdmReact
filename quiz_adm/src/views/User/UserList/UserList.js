@@ -1,0 +1,97 @@
+import React, { Component } from "react";
+import {
+  Row,
+  Col,
+  Card,
+  Table,
+  Button,
+  CardBody,
+  CardHeader
+} from "reactstrap";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import {
+  thunkFetchUserList,
+  thunkDeleteUser
+} from "./../../../actions/User/userThunk";
+
+class UserList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleDeleteUser = this.handleDeleteUser.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchUserList();
+  }
+
+  handleDeleteUser(user) {
+    return this.props.deleteUser(user);
+  }
+
+  render() {
+    return (
+      <div className="animated fadeIn">
+        <Row>
+          <Col xs="12" md="12">
+            <Card>
+              <CardHeader>Listing</CardHeader>
+              <CardBody>
+                <Link to="/user/new" className="btn btn-primary mb-4">
+                  Create new user
+                </Link>
+                <Table responsive>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Password</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.props.userList.users &&
+                      this.props.userList.users.map((user, index) => (
+                        <tr key={user._id}>
+                          <td>{user.name}</td>
+                          <td>{user.email}</td>
+                          <td>{user.password}</td>
+                          <td>
+                            <Button
+                              color="warning"
+                              onClick={() => this.handleDeleteUser(user)}
+                            >
+                              Delete
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </Table>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </div>
+    );
+  }
+}
+
+const mapStateToPropos = state => {
+  return {
+    userList: state.userStore.userList,
+    deleteUser: state.userStore.deleteUser
+  };
+};
+
+const mapDispathToProps = dispatch => {
+  return {
+    fetchUserList: () => dispatch(thunkFetchUserList()),
+    deleteUser: user => dispatch(thunkDeleteUser(user))
+  };
+};
+
+export default connect(
+  mapStateToPropos,
+  mapDispathToProps
+)(UserList);
