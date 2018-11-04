@@ -3,6 +3,7 @@ import {
   Row,
   Col,
   Card,
+  Badge,
   Table,
   Button,
   CardBody,
@@ -56,7 +57,13 @@ class UserList extends Component {
                         <tr key={user._id}>
                           <td>{user.name}</td>
                           <td>{user.email}</td>
-                          <td>{user.active}</td>
+                          <td>
+                            {user.active ? (
+                              <Badge color="primary">Active</Badge>
+                            ) : (
+                              <Badge color="danger">Deactive</Badge>
+                            )}
+                          </td>
                           <td>
                             <Button
                               color="warning"
