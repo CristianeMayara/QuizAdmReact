@@ -13,32 +13,36 @@ import {
   CardHeader
 } from "reactstrap";
 import { connect } from "react-redux";
-import { thunkCreateUser } from "../../../actions/User/UserThunk";
+import { thunkEditUser, thunkFetchUser } from "../../../actions/User/UserThunk";
 
 class UserEdit extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: {
-        name: "",
-        email: "",
-        password: ""
-      }
+      user: {}
     };
 
-    this.handleCreate = this.handleCreate.bind(this);
+    this.handleCreate = this.handleEdit.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
   }
 
-  handleCreate(user) {
-    this.props.createUser(user);
+  async componentWillMount() {
+    let { id } = this.props.match.params;
+
+    await this.props.fetchUser(id);
+
+    this.setState({ ...this.state, user: this.props.editUser.user });
+  }
+
+  handleEdit(user) {
+    this.props.handleEditUser(user);
     this.props.history.push("user/list");
   }
 
   handleChangeInput(event) {
     const { target } = event;
-    const { value, name, email, password } = target;
+    const { value, name } = target;
 
     let { user } = this.state;
     user[name] = value;
@@ -47,7 +51,7 @@ class UserEdit extends Component {
   }
 
   render() {
-    console.log(this.state.user);
+    console.log("render-user", this.props);
     return (
       <div className="animated fadeIn">
         <Row>
@@ -61,6 +65,7 @@ class UserEdit extends Component {
                     <Input
                       name="name"
                       type="text"
+                      value={this.state.user.name}
                       placeholder="Enter user name"
                       onChange={this.handleChangeInput}
                     />
@@ -70,6 +75,7 @@ class UserEdit extends Component {
                     <Input
                       name="email"
                       type="text"
+                      value={this.state.user.email}
                       onChange={this.handleChangeInput}
                       placeholder="Enter user email"
                     />
@@ -89,7 +95,7 @@ class UserEdit extends Component {
                 <Button
                   type="button"
                   color="primary"
-                  onClick={() => this.handleCreate(this.state.user)}
+                  onClick={() => this.handleEdit(this.state.user)}
                 >
                   Save
                 </Button>
@@ -104,13 +110,14 @@ class UserEdit extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.userStore.newUser
+    editUser: state.userStore.editUser
   };
 };
 
 const mapDispathToProps = dispatch => {
   return {
-    createUser: user => dispatch(thunkCreateUser(user))
+    handleEditUser: user => dispatch(thunkEditUser(user)),
+    fetchUser: id => dispatch(thunkFetchUser(id))
   };
 };
 

@@ -13,6 +13,11 @@ export const INITIAL_STATE = Immutable({
     loading: false,
     users: []
   },
+  editUser: {
+    error: false,
+    loading: false,
+    user: {}
+  },
   deleteUser: {
     error: false,
     loading: false,
@@ -86,6 +91,72 @@ export const fetchUsersError = (state = INITIAL_STATE, action) => {
   };
 };
 
+export const editUser = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    editUser: {
+      error: false,
+      loading: true,
+      user: {}
+    }
+  };
+};
+
+export const editUserSuccess = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    editUser: {
+      error: false,
+      loading: false,
+      user: action.user
+    }
+  };
+};
+
+export const editUserError = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    editUser: {
+      error: true,
+      loading: false,
+      user: {}
+    }
+  };
+};
+
+export const fetchUser = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    editUser: {
+      error: false,
+      loading: true,
+      user: {}
+    }
+  };
+};
+
+export const fetchUserSuccess = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    editUser: {
+      error: false,
+      loading: false,
+      user: action.user
+    }
+  };
+};
+
+export const fetchUserError = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    editUser: {
+      error: true,
+      loading: false,
+      user: {}
+    }
+  };
+};
+
 // export const deleteUser = (state = INITIAL_STATE, action) => {
 //   return {
 //     ...state,
@@ -125,7 +196,13 @@ export const HANDLER = {
   [UserTypes.CREATE_ERROR]: createError,
   [UserTypes.FETCH_USERS]: fetchUsers,
   [UserTypes.FETCH_USERS_SUCCESS]: fetchUsersSuccess,
-  [UserTypes.FETCH_USERS_ERROR]: fetchUsersError
+  [UserTypes.FETCH_USERS_ERROR]: fetchUsersError,
+  [UserTypes.EDIT_USER]: editUser,
+  [UserTypes.EDIT_USER_SUCCESS]: editUserSuccess,
+  [UserTypes.EDIT_USER_ERROR]: editUserError,
+  [UserTypes.FETCH_USER]: fetchUser,
+  [UserTypes.FETCH_USER_SUCCESS]: fetchUserSuccess,
+  [UserTypes.FETCH_USER_ERROR]: fetchUserError
   // [UserTypes.DELETE_USER]: deleteUser,
   // [UserTypes.DELETE_USER_SUCCESS]: deleteUserSuccess,
   // [UserTypes.DELETE_USER_ERROR]: deleteUserError

@@ -7,9 +7,15 @@ const { Types, Creators } = createActions({
   fetchUsers: null,
   fetchUsersError: ["error"],
   fetchUsersSuccess: ["users"],
-  deleteUser: null,
-  deleteUserError: ["error"],
-  deleteUserSuccess: null
+  fetchUser: ["id"],
+  fetchUserError: ["error"],
+  fetchUserSuccess: ["user"],
+  editUser: null,
+  editUserError: ["error"],
+  editUserSuccess: null
+  // deleteUser: null,
+  // deleteUserError: ["error"],
+  // deleteUserSuccess: null
 });
 
 export const UserTypes = Types;

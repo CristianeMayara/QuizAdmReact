@@ -1,5 +1,5 @@
 import { default as UserAction } from "./UserAction";
-import { createUser, fetchUsers, deleteUser } from "./UserAPI";
+import { createUser, fetchUser, fetchUsers, deleteUser } from "./UserAPI";
 
 export function thunkCreateUser(user) {
   return async dispatch => {
@@ -30,18 +30,46 @@ export function thunkFetchUserList() {
   };
 }
 
-export function thunkDeleteUser(user) {
+export function thunkFetchUser(id) {
   return async dispatch => {
-    dispatch(UserAction.deleteUser(true));
+    dispatch(UserAction.fetchUser(true));
 
     try {
-      let res = await deleteUser(user);
-      console.log(res);
-      dispatch(UserAction.deleteUserSuccess());
-      dispatch(thunkFetchUserList());
+      let res = await fetchUser(id);
+      dispatch(UserAction.fetchUserSuccess(res.data.user));
     } catch (error) {
-      dispatch(UserAction.deleteUser(false));
-      dispatch(UserAction.deleteUserError(true));
+      dispatch(UserAction.fetchUser(false));
+      dispatch(UserAction.fetchUserError(true));
     }
   };
+}
+
+export function thunkEditUser(user) {
+  return async dispatch => {
+    dispatch(UserAction.editUser(true));
+
+    try {
+      let res = await editUser(user);
+      dispatch(UserAction.editUserSuccess(res.data));
+      dispatch(thunkFetchUserList());
+    } catch (error) {
+      dispatch(UserAction.editUser(false));
+      dispatch(UserAction.editUserError(true));
+    }
+  };
+}
+
+export function thunkDeleteUser(user) {
+  // return async dispatch => {
+  //   dispatch(UserAction.deleteUser(true));
+  //   try {
+  //     let res = await deleteUser(user);
+  //     console.log(res);
+  //     dispatch(UserAction.deleteUserSuccess());
+  //     dispatch(thunkFetchUserList());
+  //   } catch (error) {
+  //     dispatch(UserAction.deleteUser(false));
+  //     dispatch(UserAction.deleteUserError(true));
+  //   }
+  // };
 }
