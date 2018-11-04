@@ -89,6 +89,14 @@ class UserEdit extends Component {
                       placeholder="Enter user password"
                     />
                   </FormGroup>
+                  <FormGroup check>
+                    <Label check htmlFor="active" />
+                    <Input
+                      type="checkbox"
+                      defaultChecked={this.state.user.active}
+                    />
+                    Active?
+                  </FormGroup>
                 </Form>
               </CardBody>
               <CardFooter>
