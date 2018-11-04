@@ -11,9 +11,9 @@ import {
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-  thunkFetchUserList,
-  thunkDeleteUser
-} from "./../../../actions/User/userThunk";
+  thunkDeleteUser,
+  thunkFetchUserList
+} from "./../../../actions/User/UserThunk";
 
 class UserList extends Component {
   constructor(props) {
@@ -31,6 +31,7 @@ class UserList extends Component {
   }
 
   render() {
+    console.log("log-state", this.state);
     return (
       <div className="animated fadeIn">
         <Row>
@@ -46,7 +47,7 @@ class UserList extends Component {
                     <tr>
                       <th>Name</th>
                       <th>Email</th>
-                      <th>Password</th>
+                      <th>Active</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -55,7 +56,7 @@ class UserList extends Component {
                         <tr key={user._id}>
                           <td>{user.name}</td>
                           <td>{user.email}</td>
-                          <td>{user.password}</td>
+                          <td>{user.active}</td>
                           <td>
                             <Button
                               color="warning"

@@ -53,38 +53,38 @@ export const createError = (state = INITIAL_STATE, action) => {
   };
 };
 
-// export const fetchUsers = (state = INITIAL_STATE, action) => {
-//   return {
-//     ...state,
-//     userList: {
-//       error: false,
-//       loading: true,
-//       users: []
-//     }
-//   };
-// };
+export const fetchUsers = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    userList: {
+      error: false,
+      loading: true,
+      users: []
+    }
+  };
+};
 
-// export const fetchUsersSuccess = (state = INITIAL_STATE, action) => {
-//   return {
-//     ...state,
-//     userList: {
-//       error: false,
-//       loading: false,
-//       users: action.users
-//     }
-//   };
-// };
+export const fetchUsersSuccess = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    userList: {
+      error: false,
+      loading: false,
+      users: action.users
+    }
+  };
+};
 
-// export const fetchUsersError = (state = INITIAL_STATE, action) => {
-//   return {
-//     ...state,
-//     userList: {
-//       error: true,
-//       loading: false,
-//       users: []
-//     }
-//   };
-// };
+export const fetchUsersError = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    userList: {
+      error: true,
+      loading: false,
+      users: []
+    }
+  };
+};
 
 // export const deleteUser = (state = INITIAL_STATE, action) => {
 //   return {
@@ -122,10 +122,10 @@ export const createError = (state = INITIAL_STATE, action) => {
 export const HANDLER = {
   [UserTypes.CREATE_USER]: createUser,
   [UserTypes.CREATE_SUCCESS]: createSuccess,
-  [UserTypes.CREATE_ERROR]: createError
-  // [UserTypes.FETCH_USERS]: fetchUsers,
-  // [UserTypes.FETCH_USERS_SUCCESS]: fetchUsersSuccess,
-  // [UserTypes.FETCH_USERS_ERROR]: fetchUsersError,
+  [UserTypes.CREATE_ERROR]: createError,
+  [UserTypes.FETCH_USERS]: fetchUsers,
+  [UserTypes.FETCH_USERS_SUCCESS]: fetchUsersSuccess,
+  [UserTypes.FETCH_USERS_ERROR]: fetchUsersError
   // [UserTypes.DELETE_USER]: deleteUser,
   // [UserTypes.DELETE_USER_SUCCESS]: deleteUserSuccess,
   // [UserTypes.DELETE_USER_ERROR]: deleteUserError

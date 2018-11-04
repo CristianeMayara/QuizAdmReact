@@ -22,7 +22,6 @@ export function thunkFetchUserList() {
 
     try {
       let res = await fetchUsers();
-      console.log(res);
       dispatch(UserAction.fetchUsersSuccess(res.data.users));
     } catch (error) {
       dispatch(UserAction.fetchUsers(false));

@@ -3,10 +3,10 @@ import { createActions } from "reduxsauce";
 const { Types, Creators } = createActions({
   createUser: null,
   createError: ["error"],
-  createSuccess: ["subject"],
+  createSuccess: ["user"],
   fetchUsers: null,
   fetchUsersError: ["error"],
-  fetchUsersSuccess: ["subjects"],
+  fetchUsersSuccess: ["users"],
   deleteUser: null,
   deleteUserError: ["error"],
   deleteUserSuccess: null
