@@ -49,6 +49,7 @@ class UserList extends Component {
                       <th>Name</th>
                       <th>Email</th>
                       <th>Active</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -65,6 +66,12 @@ class UserList extends Component {
                             )}
                           </td>
                           <td>
+                            <Link
+                              className="btn btn-info"
+                              to={`/user/edit/${user._id}`}
+                            >
+                              Edit
+                            </Link>
                             <Button
                               color="warning"
                               onClick={() => this.handleDeleteUser(user)}
