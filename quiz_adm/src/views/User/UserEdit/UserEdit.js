@@ -65,9 +65,9 @@ class UserEdit extends Component {
                     <Input
                       name="name"
                       type="text"
-                      value={this.state.user.name}
                       placeholder="Enter user name"
                       onChange={this.handleChangeInput}
+                      value={this.state.user.name || ""}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -75,9 +75,9 @@ class UserEdit extends Component {
                     <Input
                       name="email"
                       type="text"
-                      value={this.state.user.email}
-                      onChange={this.handleChangeInput}
                       placeholder="Enter user email"
+                      onChange={this.handleChangeInput}
+                      value={this.state.user.email || ""}
                     />
                   </FormGroup>
                   <FormGroup>
