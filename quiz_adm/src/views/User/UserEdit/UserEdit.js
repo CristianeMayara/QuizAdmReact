@@ -51,7 +51,6 @@ class UserEdit extends Component {
   }
 
   render() {
-    console.log("render-user", this.props);
     return (
       <div className="animated fadeIn">
         <Row>

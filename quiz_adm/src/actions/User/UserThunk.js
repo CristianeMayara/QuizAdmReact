@@ -1,5 +1,11 @@
 import { default as UserAction } from "./UserAction";
-import { createUser, fetchUser, fetchUsers, deleteUser } from "./UserAPI";
+import {
+  createUser,
+  fetchUser,
+  fetchUsers,
+  editUser,
+  deleteUser
+} from "./UserAPI";
 
 export function thunkCreateUser(user) {
   return async dispatch => {

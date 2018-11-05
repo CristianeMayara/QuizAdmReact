@@ -72,12 +72,12 @@ class UserList extends Component {
                             >
                               Edit
                             </Link>
-                            <Button
+                            {/* <Button
                               color="warning"
                               onClick={() => this.handleDeleteUser(user)}
                             >
                               Delete
-                            </Button>
+                            </Button> */}
                           </td>
                         </tr>
                       ))}
